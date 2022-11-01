@@ -1,11 +1,15 @@
 import './App.css'
 import { Header } from '@/components/Header'
+import { BrowserRouter } from 'react-router-dom'
+import RoutesIndex from './routes'
 
 function App () {
   return (
     <>
-      <Header />
-      <h1>App</h1>
+      <BrowserRouter>
+        <Header />
+        <RoutesIndex />
+      </BrowserRouter>
     </>
   )
 }
