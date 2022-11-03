@@ -1,19 +1,21 @@
+import { useContext } from 'react'
 import logo from '@/assets/react.svg'
 import useForm from '@/hooks/useForm'
 import { useNavigate } from 'react-router-dom'
 import { loginUserServices } from '@/services/userServices'
+import { AuthContext } from '@/context/AuthContext'
 import '@/assets/css/form.css'
 
 const Login = () => {
   const navigate = useNavigate()
+  const { loginUser } = useContext(AuthContext)
+
   const sendData = async (data) => {
     try {
       const result = await loginUserServices(data)
       // console.log(result.data.token)
       if (result.status === 200) {
-        // Guardar el token en el localStorage del navegador
-      // LocalStorage podemos persistir data en el navegador del cliente y permanece la data aun si se cierra la pestana o se actualiza el navegador
-        window.localStorage.setItem('token', result.data.token)
+        loginUser(result.data.token)
         navigate('/')
       }
     } catch (err) {
