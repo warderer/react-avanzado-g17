@@ -1,15 +1,23 @@
 import logo from '@/assets/react.svg'
 import useForm from '@/hooks/useForm'
+import { useNavigate } from 'react-router-dom'
 import { loginUserServices } from '@/services/userServices'
 import '@/assets/css/form.css'
 
 const Login = () => {
+  const navigate = useNavigate()
   const sendData = async (data) => {
     try {
-      // const result = await loginUserServices(data)
-      // if (result.status === 200)
+      const result = await loginUserServices(data)
+      // console.log(result.data.token)
+      if (result.status === 200) {
+        // Guardar el token en el localStorage del navegador
+      // LocalStorage podemos persistir data en el navegador del cliente y permanece la data aun si se cierra la pestana o se actualiza el navegador
+        window.localStorage.setItem('token', result.data.token)
+        navigate('/')
+      }
     } catch (err) {
-      console.log('Ocurrio un erron en Login: ' + err)
+      console.log('Ocurrio un erron en Login: ' + err.message)
     }
   }
 
