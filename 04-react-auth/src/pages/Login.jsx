@@ -16,7 +16,7 @@ const Login = () => {
       // console.log(result.data.token)
       if (result.status === 200) {
         loginUser(result.data.token)
-        navigate('/')
+        navigate('/dashboard')
       }
     } catch (err) {
       console.log('Ocurrio un erron en Login: ' + err.message)
