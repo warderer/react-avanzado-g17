@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 describe('Mi primer grupo de pruebas', () => {
   it('Leo la palabra Home en /', () => {
     // 01. Establecer el estado de la App
